@@ -1,0 +1,5 @@
+<div class="commentable-subscription commentable-subscription-{% if __SELF__.thread %}{{ __SELF__.thread.id }}{% endif %}">
+    {% if __SELF__.canSubscribe() %}
+        {% partial __SELF__ ~ "::subscription" %}
+    {% endif %}
+</div>

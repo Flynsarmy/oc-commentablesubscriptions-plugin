@@ -1,0 +1,29 @@
+{% if __SELF__.subscriptionMessage.message %}
+    {% if __SELF__.subscriptionMessage.type == "error" %}
+        <div class="alert alert-danger" role="alert">{{ __SELF__.subscriptionMessage.message }}</div>
+    {% else %}
+        <div class="alert alert-info" role="alert">{{ __SELF__.subscriptionMessage.message }}</div>
+    {% endif %}
+{% endif %}
+
+{% if __SELF__.isSubscribed %}
+    <p>You are currently subscribed for instant email notifications. Don't want them anymore? 
+        <a
+            href="javascript:;"
+            data-request="{{ __SELF__ }}::onUpdateSubscription"
+            data-request-data="thread_id:{{ __SELF__.thread.id }}, subscribing:0"
+            data-request-update="'{{ __SELF__ }}::subscription': '.commentable-subscription-{{ __SELF__.thread.id }}'"
+        >Unsubscribe now</a>.
+    </p>
+{% else %}
+    <p>
+        You are not currently subscribed to this thread. 
+        <a
+            href="javascript:;"
+            data-request="{{ __SELF__ }}::onUpdateSubscription"
+            data-request-data="thread_id:{{ __SELF__.thread.id }}, subscribing:1"
+            data-request-update="'{{ __SELF__ }}::subscription': '.commentable-subscription-{{ __SELF__.thread.id }}'"
+        >Subscribe now</a> 
+        for instant email notificaitons.
+    </p>
+{% endif %}

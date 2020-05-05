@@ -1,0 +1,44 @@
+subject = "New comment on subscribed thread"
+==
+Dear {{ user.username }},
+
+{{ comment.authorName }} has just replied to a thread you are following.
+
+This comment is located at:
+{{ comment.url }}#commentable-comment-{{ comment.id }}
+
+Here is the message that has just been posted:
+----------------------------------------------
+{{ comment.renderedContent|raw }}
+----------------------------------------------
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+Unsubscription information
+
+To unsubscribe from this thread, please visit this page:
+{{ unsubscribeUrl }}
+
+==
+
+<p>Dear {{ user.username }},</p>
+
+<p>{{ comment.authorName }} has just replied to a thread you are following.</p>
+
+<p>
+    This topic is located at:<br />
+    <a href="{{ comment.url }}#commentable-comment-{{ comment.id }}">{{ comment.url }}#commentable-comment-{{ comment.id }}</a>
+</p>
+
+<p>Here is the message that has just been posted:</p>
+<hr />
+{{ comment.renderedContent|raw }}
+<hr />
+
+<br /><br />
+<hr />
+<p><strong>Unsubscription information</strong></p>
+
+<p>
+    To unsubscribe from this thread, please visit this page:<br />
+    <a href="{{ unsubscribeUrl }}">{{ unsubscribeUrl }}</a>
+</p>
