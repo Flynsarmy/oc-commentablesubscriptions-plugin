@@ -60,7 +60,19 @@ class Notifier
     public function getSubscribers()
     {
         $comment = $this->comment;
-        $subscribers = $this->comment->thread->subscribers;
+        
+        // Exclude the user who wrote the comment if there is one
+        $exclude_ids = [];
+        if ($comment->author_id) {
+            $exclude_ids[] = $comment->author_id;
+        }
+
+        $subscribers = $this
+            ->comment
+            ->thread
+            ->subscribers()
+            ->whereNotIn('id', $exclude_ids)
+            ->get();
 
         $result = Event::fire(
             'flynsarmy.commentablesubscriptions.getsubscribers',
