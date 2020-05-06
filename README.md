@@ -10,7 +10,7 @@ Requires
 * `git clone` to */plugins/flynsarmy/commentablesubscriptions*
 * `php artisan plugin:refresh Flynsarmy.CommentableSubscriptions`
 * Add the *Thread Subscription* component to your page (in addition to the *Comments* component)
-* Add `{% component 'threadSubscription' %}` to your page where you'd like the subscribe/unsubscribe link to go.
+* Add `{% component 'threadSubscription' type="MyType" id="MyID" %}` to your page where you'd like the subscribe/unsubscribe link to go.
 
 
 ## Notifications

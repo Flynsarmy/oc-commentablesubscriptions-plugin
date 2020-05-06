@@ -44,17 +44,16 @@ class Subscription extends ComponentBase
 
     public function onRender()
     {
-        $thread_id = intval($this->property('thread_id', 0));
-        $this->prepareVars($thread_id);
+        $this->prepareVars();
 
         if ($this->canSubscribe()) {
             $this->handleOptOutLinks();
         }
     }
 
-    public function prepareVars(int $thread_id)
+    public function prepareVars()
     {
-        $this->thread = Thread::find($thread_id);
+        $this->thread = $this->getThread();
         $this->user = Auth::getUser();
         $this->isSubscribed = $this->isSubscribed();
     }
@@ -170,5 +169,23 @@ class Subscription extends ComponentBase
 
         $this->thread->subscribers()->detach($this->user->id);
         $this->isSubscribed = !$this->isSubscribed;
+    }
+
+    /**
+     * @return \Flynsarmy\Commentable\Models\Thread|null
+     */
+    protected function getThread()
+    {
+        $type = $this->property('type');
+        $id = $this->property('id');
+
+        if (empty($id) || empty($type)) {
+            return null;
+        }
+
+        return Thread::where([
+            'commentable_type' => $type,
+            'commentable_id' => $id,
+        ])->first();
     }
 }
