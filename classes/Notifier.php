@@ -8,7 +8,12 @@ use RainLab\User\Models\User;
 
 class Notifier
 {
-    public Comment $comment;
+    /**
+     * The comment we're sending this notification around
+     *
+     * @var \Flynsarmy\Commentable\Models\Comment
+     */
+    public $comment;
 
     public function __construct(Comment $comment)
     {

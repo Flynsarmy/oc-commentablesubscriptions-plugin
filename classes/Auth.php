@@ -5,8 +5,15 @@ use RainLab\User\Models\User;
 
 class Auth
 {
-    protected User $user;
-    protected Thread $thread;
+    /**
+     * @var \RainLab\User\Models\User
+     */
+    protected $user;
+    
+    /**
+     * @var \Flynsarmy\Commentable\Models\Thread
+     */
+    protected $thread;
 
     public function __construct(User $user, Thread $thread)
     {
