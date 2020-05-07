@@ -88,7 +88,7 @@ class Subscription extends ComponentBase
         $this->thread->subscribers()->detach($this->user->id);
         $this->subscriptionMessage['message'] = "You have been successfully unsubscribed from this thread.";
         $this->page['subscriptionMessage'] = $this->subscriptionMessage;
-        $this->prepareVars($this->thread->id);
+        $this->prepareVars();
         return;
     }
 
@@ -123,8 +123,9 @@ class Subscription extends ComponentBase
      */
     public function onUpdateSubscription()
     {
-        $thread_id = intval(post('thread_id', 0));
-        $this->prepareVars($thread_id);
+        $this->setProperty('id', post('id', ''));
+        $this->setProperty('type', post('type', ''));
+        $this->prepareVars();
 
         if (!$this->canSubscribe()) {
             throw new \ApplicationException("You do not have permission to do this.");

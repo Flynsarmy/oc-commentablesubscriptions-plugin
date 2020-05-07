@@ -11,7 +11,7 @@
         <a
             href="javascript:;"
             data-request="{{ __SELF__ }}::onUpdateSubscription"
-            data-request-data="thread_id:{{ __SELF__.thread.id }}, subscribing:0"
+            data-request-data="id:&quot;{{ __SELF__.thread.commentable_id }}&quot;, type:&quot;{{ __SELF__.thread.commentable_type }}&quot;, subscribing:0"
             data-request-update="'{{ __SELF__ }}::subscription': '.commentable-subscription-{{ __SELF__.thread.id }}'"
         >Unsubscribe now</a>.
     </p>
@@ -21,7 +21,7 @@
         <a
             href="javascript:;"
             data-request="{{ __SELF__ }}::onUpdateSubscription"
-            data-request-data="thread_id:{{ __SELF__.thread.id }}, subscribing:1"
+            data-request-data="id:&quot;{{ __SELF__.thread.commentable_id }}&quot;, type:&quot;{{ __SELF__.thread.commentable_type }}&quot;, subscribing:1"
             data-request-update="'{{ __SELF__ }}::subscription': '.commentable-subscription-{{ __SELF__.thread.id }}'"
         >Subscribe now</a> 
         for instant email notificaitons.
